@@ -1,39 +1,73 @@
 .song-container {
-  min-height: 60vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  img {
-    width: 25%;
-    border-radius: 50%;
-    transition: all 2s ease;
-  }
-  h2 {
-    padding: 3rem 1rem 1rem 1rem;
-  }
-  h3 {
-    font-size: 1rem;
-  }
+	min-height: 60vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	.img-container {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		&:after {
+			width: 13px;
+			height: 13px;
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			translate: -50% -50%;
+			background: radial-gradient(
+				circle at 30% 30%,
+				#ffffff 0%,
+				#c0c0c0 20%,
+				#808080 60%,
+				#666666 100%
+			);
+			border-radius: 50%;
+			z-index: 1;
+		}
+	}
+
+	img {
+		width: 430px;
+		aspect-ratio: 1 / 1;
+		padding: 100px;
+		background: repeating-radial-gradient(circle at 50%, #000000, #444444 5px);
+		background-position: center center;
+		border-radius: 50%;
+		transition: all 2s ease;
+	}
+
+	h2 {
+		padding: 3rem 1rem 1rem 1rem;
+	}
+
+	h3 {
+		font-size: 1rem;
+	}
 }
 
 @media screen and (max-width: 768px) {
-  .song-container {
-    img {
-      width: 60%;
-    }
-  }
+	.song-container {
+		img {
+			width: 60%;
+		}
+	}
 }
 
 @keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .rotateSong {
-  animation: rotate 20s linear forwards infinite;
+	animation: rotate 20s linear forwards infinite;
 }

@@ -1,14 +1,14 @@
-.library {
+.queue {
 	position: fixed;
 	box-shadow: 2px 2px 50px rgb(221, 221, 221);
 	border-radius: 1rem;
 	top: 0;
-	left: 0;
+	right: 0;
 	width: 20rem;
 	height: 100%;
 	overflow: auto;
 	background: white;
-	transform: translateX(-100%);
+	transform: translateX(100%);
 	transition: all 0.5s ease;
 	opacity: 0;
 
@@ -17,7 +17,7 @@
 	}
 }
 
-.library-song {
+.queue-song {
 	display: flex;
 	align-items: center;
 	padding: 1rem 2rem 1rem 2rem;
@@ -77,13 +77,13 @@
 		color: white;
 	}
 }
-.active-library {
+.active-queue {
 	transform: translateX(0%);
 	opacity: 1;
 }
 
 @media screen and (max-width: 768px) {
-	.library {
+	.queue {
 		width: 100%;
 	}
 }
