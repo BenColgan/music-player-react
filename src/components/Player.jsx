@@ -59,7 +59,9 @@ const Player = ({
 			audioRef.current.pause();
 			setIsPlaying(!isPlaying);
 		} else {
-			audioRef.current.play();
+			setTimeout(() => {
+				audioRef.current.play();
+			}, 1000);
 			setIsPlaying(!isPlaying);
 		}
 	};
