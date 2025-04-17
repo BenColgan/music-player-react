@@ -22,7 +22,6 @@ const Player = ({
 	setSongs,
 }) => {
 	const [activeVolume, setActiveVolume] = useState(false);
-	//UseEffect Update List
 	const activeLibraryHandler = (nextPrev) => {
 		const newSongs = songs.map((song) => {
 			if (song.id === nextPrev.id) {

@@ -14,6 +14,7 @@ const LibrarySong = ({
 	active,
 	queuedSongs,
 	setQueuedSongs,
+	onSongAddedToQueue,
 }) => {
 	const songSelectHandler = () => {
 		const selectedSong = songs.filter((state) => state.id === id);
@@ -42,6 +43,7 @@ const LibrarySong = ({
 		e.stopPropagation();
 		const selectedSong = songs.find((song) => song.id === id);
 		setQueuedSongs([...queuedSongs, selectedSong]);
+		onSongAddedToQueue(`Added "${name}" by ${artist} to your queue`);
 	};
 	return (
 		<div

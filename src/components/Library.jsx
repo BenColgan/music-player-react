@@ -11,6 +11,7 @@ const Library = ({
 	libraryStatus,
 	queuedSongs,
 	setQueuedSongs,
+	onSongAddedToQueue,
 }) => {
 	return (
 		<div className={`library ${libraryStatus ? "active-library" : " "}`}>
@@ -31,6 +32,7 @@ const Library = ({
 						setSongs={setSongs}
 						queuedSongs={queuedSongs}
 						setQueuedSongs={setQueuedSongs}
+						onSongAddedToQueue={onSongAddedToQueue}
 					/>
 				))}
 			</div>
