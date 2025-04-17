@@ -51,6 +51,24 @@
 	}
 }
 
+.needle {
+	width: 20px;
+	height: 250px;
+	border-radius: 0 0 8px 8px;
+	background: linear-gradient(to bottom, #000000, #444444);
+	position: absolute;
+	top: 30%;
+	left: 105%;
+	z-index: 2;
+	transform-origin: top;
+	rotate: 0deg;
+	transition: rotate 1s ease;
+
+	&--active {
+		rotate: 32deg;
+	}
+}
+
 @media screen and (max-width: 768px) {
 	.song-container {
 		img {

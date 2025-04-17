@@ -9,6 +9,7 @@ const Song = ({ currentSong, isPlaying }) => {
 					src={currentSong.cover}
 					alt=""
 				/>
+				<div className={`needle ${isPlaying ? "needle--active" : ""}`}></div>
 			</div>
 			<h2>{currentSong.name}</h2>
 			<h3>{currentSong.artist}</h3>
