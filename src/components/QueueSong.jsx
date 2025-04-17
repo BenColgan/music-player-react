@@ -5,7 +5,6 @@ const QueueSong = ({
 	artist,
 	cover,
 	id,
-	active,
 	queuedSongs,
 	setQueuedSongs,
 }) => {
@@ -14,10 +13,7 @@ const QueueSong = ({
 		setQueuedSongs(queuedSongs.filter((song) => song.id !== id));
 	};
 	return (
-		<div
-			onClick={removeSongFromQueue}
-			className={`queue-song ${active ? "selected" : ""}`}
-		>
+		<div onClick={removeSongFromQueue} className="queue-song">
 			<img src={cover} alt="" />
 			<div className="song-description">
 				<h3>{name}</h3>

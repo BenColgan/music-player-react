@@ -14,7 +14,6 @@ const Queue = ({ queuedSongs, isPlaying, queueStatus, setQueuedSongs }) => (
 						cover={song.cover}
 						name={song.name}
 						artist={song.artist}
-						active={song.active}
 						key={song.id}
 						id={song.id}
 						isPlaying={isPlaying}

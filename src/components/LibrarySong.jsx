@@ -1,5 +1,6 @@
 import React from "react";
 import { playAudio } from "../util";
+import { v4 as uuidv4 } from "uuid";
 
 const LibrarySong = ({
 	name,
@@ -10,6 +11,7 @@ const LibrarySong = ({
 	songs,
 	audioRef,
 	isPlaying,
+	setIsPlaying,
 	setSongs,
 	active,
 	queuedSongs,
@@ -42,7 +44,11 @@ const LibrarySong = ({
 	const addSongToQueue = (e) => {
 		e.stopPropagation();
 		const selectedSong = songs.find((song) => song.id === id);
-		setQueuedSongs([...queuedSongs, selectedSong]);
+		const selectedSongWithUniqueId = {
+			...selectedSong,
+			id: uuidv4(), // Generate ID only when adding to queue
+		};
+		setQueuedSongs([...queuedSongs, selectedSongWithUniqueId]);
 		onSongAddedToQueue(`Added "${name}" by ${artist} to your queue`);
 	};
 	return (
