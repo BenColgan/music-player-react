@@ -15,6 +15,13 @@
 	h2 {
 		padding: 2rem;
 	}
+
+	.empty-queue {
+		text-align: center;
+		color: #4f4f4f;
+		font-size: 1.1rem;
+		margin-top: 2rem;
+	}
 }
 
 .queue-song {
@@ -35,8 +42,26 @@
 		h4 {
 			color: white;
 		}
+
+		.remove-song {
+			opacity: 1;
+			filter: brightness(1.6);
+		}
 	}
 }
+
+.remove-song {
+	opacity: 0;
+	background-color: white;
+	margin-left: auto;
+	padding: 0.5rem 0.75rem;
+	color: #ea4335;
+	border: 2px solid #ea4335;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
 .song-description {
 	padding-left: 1rem;
 

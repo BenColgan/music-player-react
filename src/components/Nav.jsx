@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic, faList } from "@fortawesome/free-solid-svg-icons";
+import { LoginContext } from "../contexts/LoginContext";
 
 const Nav = ({
 	setLibraryStatus,
@@ -8,6 +9,7 @@ const Nav = ({
 	setQueueStatus,
 	queueStatus,
 }) => {
+	const { userName } = useContext(LoginContext);
 	const openLibraryHandler = () => {
 		setLibraryStatus(!libraryStatus);
 	};
@@ -24,7 +26,7 @@ const Nav = ({
 				Library
 				<FontAwesomeIcon icon={faMusic}></FontAwesomeIcon>
 			</button>
-			<h1>Welcome Back ..insert name..</h1>
+			<h1>Hey {userName}, enjoy my little react music app </h1>
 			<button
 				className={queueStatus ? "queue-active" : ""}
 				onClick={openQueueHandler}

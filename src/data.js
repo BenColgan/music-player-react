@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
-function chillHop() {
+function chillhop() {
 	return [
 		{
 			name: "Beaver Creek",
 			cover: require("./assets/covers/BeaverCreek.png"),
-			artist: "Aso, Middle School, Aviino",
+			artist: "Middle School, Aviino",
 			audio: require("./assets/songs/Beaver Creek.mp3"),
 			color: ["#205950", "#2ab3bf"],
 			id: uuidv4(),
@@ -15,6 +15,15 @@ function chillHop() {
 			cover: require("./assets/covers/Aiguille.jpg"),
 			artist: "Aiguille",
 			audio: require("./assets/songs/Daylight.mp3"),
+			color: ["#EF8EA9", "#ab417f"],
+			id: uuidv4(),
+			active: false,
+		},
+		{
+			name: "Adrenaline",
+			cover: require("./assets/covers/Adrenaline.png"),
+			artist: "Otherside",
+			audio: require("./assets/songs/Adrenaline.mp3"),
 			color: ["#EF8EA9", "#ab417f"],
 			id: uuidv4(),
 			active: false,
@@ -38,6 +47,15 @@ function chillHop() {
 			active: false,
 		},
 		{
+			name: "Outer Space",
+			cover: require("./assets/covers/OuterSpace.png"),
+			artist: "Flat Bread",
+			audio: require("./assets/songs/Outer Space.mp3"),
+			color: ["#CD607D", "#c94043"],
+			id: uuidv4(),
+			active: false,
+		},
+		{
 			name: "Reflection",
 			cover: require("./assets/covers/Reflections.png"),
 			artist: "Swørn",
@@ -47,29 +65,11 @@ function chillHop() {
 			active: false,
 		},
 		{
-			name: "Under the City Stars",
+			name: "Under the City",
 			cover: require("./assets/covers/CanaryForest.jpg"),
-			artist: "Aso, Middle School, Aviino",
+			artist: "Middle School, Aviino",
 			audio: require("./assets/songs/Under the City Stars.mp3"),
 			color: ["#205950", "#2ab3bf"],
-			id: uuidv4(),
-			active: false,
-		},
-		{
-			name: "Adrenaline",
-			cover: require("./assets/covers/Adrenaline.png"),
-			artist: "Otherside",
-			audio: require("./assets/songs/Adrenaline.mp3"),
-			color: ["#EF8EA9", "#ab417f"],
-			id: uuidv4(),
-			active: false,
-		},
-		{
-			name: "Outer Space",
-			cover: require("./assets/covers/OuterSpace.png"),
-			artist: "Flat Bread",
-			audio: require("./assets/songs/Outer Space.mp3"),
-			color: ["#CD607D", "#c94043"],
 			id: uuidv4(),
 			active: false,
 		},
@@ -85,4 +85,4 @@ function chillHop() {
 	];
 }
 
-export default chillHop;
+export default chillhop;
