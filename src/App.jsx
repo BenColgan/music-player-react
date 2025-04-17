@@ -10,7 +10,7 @@ import { LoginContext } from "./contexts/LoginContext";
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [userName, setUserName] = useState("I don't remember my name");
+	const [userName, setUserName] = useState("'I don't remember my name'");
 
 	return (
 		<LoginContext.Provider
