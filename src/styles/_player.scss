@@ -61,14 +61,6 @@
 	pointer-events: none;
 }
 
-input[type="range"] {
-	top: -55px;
-	position: absolute;
-	right: -20px;
-	rotate: -90deg;
-	width: 90px;
-}
-
 input[type="range"]:focus {
 	outline: none;
 }
@@ -77,6 +69,30 @@ input[type="range"]::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	height: 16px;
 	width: 16px;
+}
+
+.volume-input {
+	top: -55px;
+	position: absolute;
+	right: -18px;
+
+	input[type="range"] {
+		top: 0px;
+		position: absolute;
+		right: 0px;
+		rotate: -90deg;
+		width: 90px;
+	}
+
+	input[type="range"]:focus {
+		outline: none;
+	}
+
+	input[type="range"]::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		height: 16px;
+		width: 16px;
+	}
 }
 
 @media screen and (max-width: 768px) {
