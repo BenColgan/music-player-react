@@ -56,14 +56,14 @@ const LibrarySong = ({
 			onClick={songSelectHandler}
 			className={`library-song ${active ? "selected" : ""}`}
 		>
-			<div className="library-song-image">
+			<div className="library-song__image">
 				<img src={cover} alt="" />
 			</div>
-			<div className="song-description">
+			<div className="library-song__description">
 				<h3>{name}</h3>
 				<h4>{artist}</h4>
 			</div>
-			<div onClick={addSongToQueue} className="add-song">
+			<div onClick={addSongToQueue} className="library-song__add-to-queue">
 				+
 			</div>
 		</div>

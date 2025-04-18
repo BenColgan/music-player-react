@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 const Queue = ({ queuedSongs, isPlaying, queueStatus, setQueuedSongs }) => (
-	<div className={`queue ${queueStatus ? "active-queue" : ""}`}>
-		<h2>Queue</h2>
-		<div className="queue-songs">
+	<div className={`queue ${queueStatus ? "queue--active" : ""}`}>
+		<h2 className="queue__title">Queue</h2>
+		<div className="queue__songs">
 			{queuedSongs.length === 0 ? (
-				<p className="empty-queue">No songs in queue</p>
+				<p className="queue__empty">No songs in queue</p>
 			) : (
 				queuedSongs.map((song) => (
 					<QueueSong
@@ -26,7 +26,7 @@ const Queue = ({ queuedSongs, isPlaying, queueStatus, setQueuedSongs }) => (
 			)}
 		</div>
 		{queuedSongs.length > 0 && (
-			<div className="queue-info">
+			<div className="queue__play">
 				<FontAwesomeIcon icon={faPlay} />
 				<span>
 					Play {queuedSongs.length} song{queuedSongs.length > 1 ? "s" : ""} in

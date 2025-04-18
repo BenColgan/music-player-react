@@ -4,14 +4,14 @@ import { faMusic, faList } from "@fortawesome/free-solid-svg-icons";
 import { LoginContext } from "../contexts/LoginContext";
 
 const Nav = ({
-	setLibraryStatus,
-	libraryStatus,
+	setisLibraryOpen,
+	isLibraryOpen,
 	setQueueStatus,
 	queueStatus,
 }) => {
 	const { userName } = useContext(LoginContext);
 	const openLibraryHandler = () => {
-		setLibraryStatus(!libraryStatus);
+		setisLibraryOpen(!isLibraryOpen);
 	};
 	const openQueueHandler = () => {
 		setQueueStatus(!queueStatus);
@@ -20,7 +20,7 @@ const Nav = ({
 	return (
 		<nav>
 			<button
-				className={libraryStatus ? "library-active" : ""}
+				className={isLibraryOpen ? "library--open" : ""}
 				onClick={openLibraryHandler}
 			>
 				Library
@@ -28,7 +28,7 @@ const Nav = ({
 			</button>
 			<h1>Hey {userName}, enjoy my little react music app </h1>
 			<button
-				className={queueStatus ? "queue-active" : ""}
+				className={queueStatus ? "queue--open" : ""}
 				onClick={openQueueHandler}
 			>
 				Queue

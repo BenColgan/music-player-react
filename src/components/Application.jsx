@@ -6,7 +6,7 @@ import Song from "./Song";
 import Library from "./Library";
 import Queue from "./Queue";
 import Nav from "./Nav";
-import Toast from "./Toast";
+import ToastContainer from "./ToastContainer";
 
 //Import data
 import chillhop from "../data";
@@ -28,7 +28,7 @@ function Application() {
 		animationPercentage: 0,
 		volume: 0,
 	});
-	const [libraryStatus, setLibraryStatus] = useState(false);
+	const [isLibraryOpen, setisLibraryOpen] = useState(false);
 	const [queueStatus, setQueueStatus] = useState(false);
 	const [toasts, setToasts] = useState([]);
 
@@ -66,13 +66,13 @@ function Application() {
 
 	return (
 		<div
-			className={`application ${libraryStatus ? "library-active" : ""} ${
+			className={`application ${isLibraryOpen ? "library-active" : ""} ${
 				queueStatus ? "queue-active" : ""
 			}`}
 		>
 			<Nav
-				libraryStatus={libraryStatus}
-				setLibraryStatus={setLibraryStatus}
+				isLibraryOpen={isLibraryOpen}
+				setisLibraryOpen={setisLibraryOpen}
 				queueStatus={queueStatus}
 				setQueueStatus={setQueueStatus}
 			/>
@@ -94,7 +94,7 @@ function Application() {
 				audioRef={audioRef}
 				isPlaying={isPlaying}
 				setSongs={setSongs}
-				libraryStatus={libraryStatus}
+				isLibraryOpen={isLibraryOpen}
 				queuedSongs={queuedSongs}
 				setQueuedSongs={setQueuedSongs}
 				onSongAddedToQueue={showToast}
@@ -105,15 +105,7 @@ function Application() {
 				queueStatus={queueStatus}
 				setQueuedSongs={setQueuedSongs}
 			/>
-			<div className="toast-container">
-				{toasts.map((toast) => (
-					<Toast
-						key={toast.id}
-						message={toast.message}
-						onClose={() => removeToast(toast.id)}
-					/>
-				))}
-			</div>
+			<ToastContainer toasts={toasts} removeToast={removeToast} />
 			<audio
 				onLoadedMetadata={timeUpdateHandler}
 				onTimeUpdate={timeUpdateHandler}

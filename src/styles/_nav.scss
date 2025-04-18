@@ -22,12 +22,8 @@ nav {
 		}
 	}
 
-	.library-active {
-		background: rgb(65, 65, 65);
-		color: white;
-	}
-
-	.queue-active {
+	.library--open,
+	.queue--open {
 		background: rgb(65, 65, 65);
 		color: white;
 	}

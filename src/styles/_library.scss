@@ -12,115 +12,14 @@
 	transition: all 0.5s ease;
 	opacity: 0;
 
-	h2 {
+	&--open {
+		transform: translateX(0%);
+		opacity: 1;
+	}
+
+	&__title {
 		padding: 2rem;
 	}
-}
-
-.library-song {
-	display: flex;
-	align-items: center;
-	padding: 1rem 2rem 1rem 2rem;
-	cursor: pointer;
-	transition: all 0.75s ease-out;
-
-	&:hover {
-		background: rgb(140, 140, 140);
-
-		h3,
-		h4 {
-			color: white;
-		}
-
-		.library-song-image {
-			&:after {
-				opacity: 1;
-			}
-		}
-	}
-}
-
-.library-song-image {
-	position: relative;
-	width: 30%;
-
-	&:after {
-		opacity: 0;
-		content: "▶";
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		color: white;
-		font-size: 2rem;
-		transition: all 0.5s ease-out;
-	}
-
-	img {
-		width: 100%;
-	}
-}
-
-.song-description {
-	padding-left: 1rem;
-
-	h3 {
-		font-size: 1rem;
-	}
-
-	h4 {
-		font-size: 0.7rem;
-	}
-}
-
-.add-song {
-	background-color: white;
-	margin-left: auto;
-	padding: 0.5rem 0.75rem;
-	color: grey;
-	border: 2px solid grey;
-	border-radius: 8px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-
-	&:hover {
-		color: #34a853;
-		border: 2px solid #34a853;
-		filter: brightness(1.2);
-	}
-}
-
-/* The emerging W3C standard
-   that is currently Firefox-only */
-* {
-	scrollbar-width: thin;
-	scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
-}
-
-/* Works on Chrome/Edge/Safari */
-*::-webkit-scrollbar {
-	width: 5px;
-}
-*::-webkit-scrollbar-track {
-	background: transparent;
-}
-*::-webkit-scrollbar-thumb {
-	background-color: rgba(155, 155, 155, 0.7);
-	border-radius: 20px;
-	border: transparent;
-}
-
-.selected {
-	background: black;
-
-	h3,
-	h4 {
-		color: white;
-	}
-}
-.active-library {
-	transform: translateX(0%);
-	opacity: 1;
 }
 
 @media screen and (max-width: 768px) {

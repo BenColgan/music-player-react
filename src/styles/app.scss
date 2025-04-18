@@ -2,13 +2,37 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	scrollbar-width: thin;
+	scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+	width: 5px;
+}
+*::-webkit-scrollbar-track {
+	background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: rgba(155, 155, 155, 0.7);
+	border-radius: 20px;
+	border: transparent;
+}
+
+.selected {
+	background: black;
+
+	h3,
+	h4 {
+		color: white;
+	}
 }
 
 body {
 	font-family: "Lato", sans-serif;
 }
 
-.App {
+.application {
 	transition: all 0.5s ease;
 }
 
@@ -34,10 +58,13 @@ h4 {
 	font-weight: 400;
 }
 
-@import "./song";
-@import "./player";
-@import "./library";
-@import "./nav";
-@import "./queue";
+@import "./animations";
 @import "./login";
+@import "./nav";
+@import "./player";
+@import "./song";
+@import "./library";
+@import "./library-song";
+@import "./queue";
+@import "./queue-song";
 @import "./toast";

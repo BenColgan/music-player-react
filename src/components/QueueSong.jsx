@@ -14,12 +14,12 @@ const QueueSong = ({
 	};
 	return (
 		<div onClick={removeSongFromQueue} className="queue-song">
-			<img src={cover} alt="" />
-			<div className="song-description">
+			<img src={cover} alt="" className="queue-song__image" />
+			<div className="queue-song__description">
 				<h3>{name}</h3>
 				<h4>{artist}</h4>
 			</div>
-			<div className="remove-song">remove</div>
+			<div className="queue-song__remove-song">remove</div>
 		</div>
 	);
 };
