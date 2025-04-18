@@ -49,20 +49,21 @@ function Application() {
 		if (queuedSongs.length > 0) {
 			const nextSong = queuedSongs[0];
 			setCurrentSong(nextSong);
-			
+
 			// Update active state for songs when playing from queue
 			const newSongs = songs.map((song) => ({
 				...song,
-				active: song.name === nextSong.name && song.artist === nextSong.artist
+				active: song.name === nextSong.name && song.artist === nextSong.artist,
 			}));
 			setSongs(newSongs);
-			
+
 			setQueuedSongs(queuedSongs.slice(1));
 			setTimeout(() => {
 				audioRef.current.play();
 			}, 500);
 		} else {
 			setIsPlaying(false);
+			audioRef.current.currentTime = 0;
 		}
 	};
 
