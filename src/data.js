@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-function chillhop() {
+function playList() {
 	return [
 		{
 			name: "Beaver Creek",
@@ -85,4 +85,4 @@ function chillhop() {
 	];
 }
 
-export default chillhop;
+export default playList;

@@ -9,16 +9,13 @@ import Nav from "./Nav";
 import ToastContainer from "./ToastContainer";
 
 //Import data
-import chillhop from "../data";
-
-//Util
-import { playAudio } from "../util";
+import playList from "../data";
 
 function Application() {
 	//Ref
 	const audioRef = useRef(null);
 
-	const [songs, setSongs] = useState(chillhop());
+	const [songs, setSongs] = useState(playList());
 	const [queuedSongs, setQueuedSongs] = useState([]);
 	const [currentSong, setCurrentSong] = useState(songs[0]);
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -49,10 +46,24 @@ function Application() {
 	};
 
 	const songEndHandler = async () => {
-		let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-		await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-		playAudio(isPlaying, audioRef);
-		return;
+		if (queuedSongs.length > 0) {
+			const nextSong = queuedSongs[0];
+			setCurrentSong(nextSong);
+			
+			// Update active state for songs when playing from queue
+			const newSongs = songs.map((song) => ({
+				...song,
+				active: song.name === nextSong.name && song.artist === nextSong.artist
+			}));
+			setSongs(newSongs);
+			
+			setQueuedSongs(queuedSongs.slice(1));
+			setTimeout(() => {
+				audioRef.current.play();
+			}, 500);
+		} else {
+			setIsPlaying(false);
+		}
 	};
 
 	const showToast = (message) => {
@@ -92,6 +103,7 @@ function Application() {
 				songs={songs}
 				setCurrentSong={setCurrentSong}
 				audioRef={audioRef}
+				setIsPlaying={setIsPlaying}
 				isPlaying={isPlaying}
 				setSongs={setSongs}
 				isLibraryOpen={isLibraryOpen}

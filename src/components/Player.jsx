@@ -8,8 +8,6 @@ import {
 	faVolumeDown,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { playAudio } from "../util";
-
 const Player = ({
 	isPlaying,
 	setIsPlaying,
@@ -54,30 +52,34 @@ const Player = ({
 		setSongInfo({ ...songInfo, currentTime: e.target.value });
 	};
 
+	const playAudio = () => {
+		setTimeout(() => {
+			audioRef.current.play();
+		}, 1000);
+	};
+
 	const playSongHandler = () => {
 		if (isPlaying) {
 			audioRef.current.pause();
 			setIsPlaying(!isPlaying);
 		} else {
-			setTimeout(() => {
-				audioRef.current.play();
-			}, 1000);
 			setIsPlaying(!isPlaying);
+			playAudio();
 		}
 	};
 	const skipTrackHandler = async (direction) => {
 		let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
 
-		//Forward BAck
 		if (direction === "skip-forward") {
 			await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
 			activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
 		}
+
 		if (direction === "skip-back") {
 			if ((currentIndex - 1) % songs.length === -1) {
 				await setCurrentSong(songs[songs.length - 1]);
 				activeLibraryHandler(songs[songs.length - 1]);
-				playAudio(isPlaying, audioRef);
+				playAudio();
 				return;
 			}
 			await setCurrentSong(songs[(currentIndex - 1) % songs.length]);

@@ -1,5 +1,4 @@
 import React from "react";
-import { playAudio } from "../util";
 import { v4 as uuidv4 } from "uuid";
 
 const LibrarySong = ({
@@ -37,8 +36,10 @@ const LibrarySong = ({
 		});
 		setSongs(newSongs);
 
-		//Play audio
-		playAudio(isPlaying, audioRef);
+		setIsPlaying(true);
+		setTimeout(() => {
+			audioRef.current.play();
+		}, 500);
 	};
 
 	const addSongToQueue = (e) => {

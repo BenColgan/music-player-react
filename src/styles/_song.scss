@@ -1,11 +1,11 @@
-.song-container {
+.song {
 	min-height: 60vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 
-	.img-container {
+	&__inner {
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -30,23 +30,33 @@
 			border-radius: 50%;
 			z-index: 1;
 		}
+
+		img {
+			width: 430px;
+			aspect-ratio: 1 / 1;
+			padding: 100px;
+			background: repeating-radial-gradient(
+				circle at 50%,
+				#000000,
+				#444444 5px
+			);
+			background-position: center center;
+			border-radius: 50%;
+			transition: all 2s ease;
+		}
 	}
 
-	img {
-		width: 430px;
-		aspect-ratio: 1 / 1;
-		padding: 100px;
-		background: repeating-radial-gradient(circle at 50%, #000000, #444444 5px);
-		background-position: center center;
-		border-radius: 50%;
-		transition: all 2s ease;
+	&__vinyl {
+		&--active {
+			animation: inertia 2s ease-out forwards;
+		}
 	}
 
-	h2 {
+	&__title {
 		padding: 3rem 1rem 1rem 1rem;
 	}
 
-	h3 {
+	&__artist {
 		font-size: 1rem;
 	}
 }
@@ -56,21 +66,31 @@
 	height: 250px;
 	border-radius: 0 0 8px 8px;
 	background: linear-gradient(to bottom, #000000, #444444);
-	position: absolute;
-	top: 30%;
-	left: 105%;
-	z-index: 2;
 	transform-origin: top;
-	rotate: 0deg;
-	transition: rotate 1s ease;
+
+	&__container {
+		width: 20px;
+		height: 250px;
+		position: absolute;
+		top: 30%;
+		left: 105%;
+		z-index: 2;
+		transform-origin: top;
+		rotate: 0deg;
+		transition: rotate 1s ease;
+	}
 
 	&--active {
 		rotate: 32deg;
 	}
+
+	&--wobble {
+		animation: wobble 6s ease-in-out infinite alternate;
+	}
 }
 
 @media screen and (max-width: 768px) {
-	.song-container {
+	.song {
 		img {
 			width: 60%;
 		}
@@ -78,5 +98,5 @@
 }
 
 .rotateSong {
-	animation: rotate 20s linear 1s forwards infinite;
+	animation: rotate 20s linear forwards infinite;
 }

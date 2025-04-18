@@ -29,3 +29,33 @@
 		transform: rotate(360deg);
 	}
 }
+
+@keyframes wobble {
+	0% {
+		rotate: -0.3deg;
+	}
+	20% {
+		rotate: 0.5deg;
+	}
+	40% {
+		rotate: -0.2deg;
+	}
+	60% {
+		rotate: 0.4deg;
+	}
+	80% {
+		rotate: -0.1deg;
+	}
+	100% {
+		rotate: 0.3deg;
+	}
+}
+
+@keyframes inertia {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(-12deg);
+	}
+}
