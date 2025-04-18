@@ -36,7 +36,7 @@
 	}
 
 	&:hover {
-		background: rgb(140, 140, 140);
+		background: #ea4435;
 
 		h3,
 		h4 {
@@ -45,21 +45,37 @@
 
 		.remove-song {
 			opacity: 1;
-			filter: brightness(1.6);
 		}
 	}
 }
 
-.remove-song {
-	font-size: 26px;
-	opacity: 0;
-	background-color: white;
-	margin-left: auto;
-	padding: 0.15rem 0.8rem;
-	color: #ea4335;
-	border: 2px solid #ea4335;
-	border-radius: 8px;
+.queue-info {
 	cursor: pointer;
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	margin: 1rem auto;
+	border-radius: 2rem;
+	padding: 1rem;
+	width: fit-content;
+	background-color: black;
+	color: white;
+	font-weight: 600;
+	transition: all 0.3s ease-out;
+	border: 2px solid black;
+
+	&:hover {
+		background-color: white;
+		color: black;
+	}
+}
+
+.remove-song {
+	font-size: 13px;
+	opacity: 0;
+	margin-left: auto;
+	padding: 0.15rem 0 0.15rem 1rem;
+	color: white;
 	transition: all 0.3s ease;
 }
 

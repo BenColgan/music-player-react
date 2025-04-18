@@ -19,7 +19,7 @@ const QueueSong = ({
 				<h3>{name}</h3>
 				<h4>{artist}</h4>
 			</div>
-			<div className="remove-song">-</div>
+			<div className="remove-song">remove</div>
 		</div>
 	);
 };

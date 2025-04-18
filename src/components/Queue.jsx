@@ -1,5 +1,7 @@
 import React from "react";
 import QueueSong from "./QueueSong";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 const Queue = ({ queuedSongs, isPlaying, queueStatus, setQueuedSongs }) => (
 	<div className={`queue ${queueStatus ? "active-queue" : ""}`}>
@@ -23,6 +25,15 @@ const Queue = ({ queuedSongs, isPlaying, queueStatus, setQueuedSongs }) => (
 				))
 			)}
 		</div>
+		{queuedSongs.length > 0 && (
+			<div className="queue-info">
+				<FontAwesomeIcon icon={faPlay} />
+				<span>
+					Play {queuedSongs.length} song{queuedSongs.length > 1 ? "s" : ""} in
+					queue
+				</span>
+			</div>
+		)}
 	</div>
 );
 
