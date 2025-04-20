@@ -1,158 +1,138 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faPlay,
-	faAngleLeft,
-	faAngleRight,
-	faPause,
-	faVolumeDown,
-} from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useRef } from "react";
 
-const Player = ({
-	isPlaying,
-	setIsPlaying,
-	audioRef,
-	songInfo,
-	setSongInfo,
-	currentSong,
-	songs,
-	setCurrentSong,
-	setSongs,
-}) => {
-	const [activeVolume, setActiveVolume] = useState(false);
-	const activeLibraryHandler = (nextPrev) => {
-		const newSongs = songs.map((song) => {
-			if (song.id === nextPrev.id) {
-				return {
-					...song,
-					active: true,
-				};
-			} else {
-				return {
-					...song,
-					active: false,
-				};
-			}
+//Import Components
+import Controls from "./Controls";
+import Song from "./Song";
+import Library from "./Library";
+import Queue from "./Queue";
+import Nav from "./Nav";
+import ToastContainer from "./ToastContainer";
+
+//Import data
+import playList from "../playlist";
+
+function Player() {
+	const audioRef = useRef(null);
+	const [songs, setSongs] = useState(playList());
+	const [queuedSongs, setQueuedSongs] = useState([]);
+	const [currentSong, setCurrentSong] = useState(songs[0]);
+	const [isPlaying, setIsPlaying] = useState(false);
+	const [songInfo, setSongInfo] = useState({
+		currentTime: 0,
+		duration: 0,
+		animationPercentage: 0,
+		volume: 0,
+	});
+	const [isLibraryOpen, setisLibraryOpen] = useState(false);
+	const [isQueueOpen, setisQueueOpen] = useState(false);
+	const [toasts, setToasts] = useState([]);
+
+	const timeUpdateHandler = (e) => {
+		const current = e.target.currentTime;
+		const duration = e.target.duration;
+
+		const roundedCurrent = Math.round(current);
+		const roundedDuration = Math.round(duration);
+		const percentage = Math.round((roundedCurrent / roundedDuration) * 100);
+		setSongInfo({
+			...songInfo,
+			currentTime: current,
+			duration: duration,
+			animationPercentage: percentage,
+			volume: e.target.volume,
 		});
+	};
 
+	const playNextQueuedSong = () => {
+		const nextSong = queuedSongs[0];
+		setCurrentSong(nextSong);
+
+		// Update active state for songs when playing from queue
+		const newSongs = songs.map((song) => ({
+			...song,
+			active: song.name === nextSong.name && song.artist === nextSong.artist,
+		}));
 		setSongs(newSongs);
-	};
 
-	const trackAnim = {
-		transform: `translateX(${songInfo.animationPercentage}%)`,
-	};
-	//Event Handlers
-	function getTime(time) {
-		return (
-			Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
-		);
-	}
-	const dragHandler = (e) => {
-		audioRef.current.currentTime = e.target.value;
-		setSongInfo({ ...songInfo, currentTime: e.target.value });
-	};
-
-	const playAudio = () => {
+		setQueuedSongs(queuedSongs.slice(1));
 		setTimeout(() => {
 			audioRef.current.play();
-		}, 1000);
+		}, 500);
 	};
 
-	const playSongHandler = () => {
-		if (isPlaying) {
-			audioRef.current.pause();
-			setIsPlaying(!isPlaying);
+	const songEndHandler = async () => {
+		if (queuedSongs.length > 0) {
+			playNextQueuedSong();
 		} else {
-			setIsPlaying(!isPlaying);
-			playAudio();
+			setIsPlaying(false);
+			audioRef.current.currentTime = 0;
 		}
 	};
-	const skipTrackHandler = async (direction) => {
-		let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
 
-		if (direction === "skip-forward") {
-			await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-			activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
-		}
-
-		if (direction === "skip-back") {
-			if ((currentIndex - 1) % songs.length === -1) {
-				await setCurrentSong(songs[songs.length - 1]);
-				activeLibraryHandler(songs[songs.length - 1]);
-				playAudio();
-				return;
-			}
-			await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
-			activeLibraryHandler(songs[(currentIndex - 1) % songs.length]);
-		}
-		if (isPlaying) audioRef.current.play();
+	const showToast = (message) => {
+		const id = Date.now();
+		setToasts((prevToasts) => [...prevToasts, { id, message }]);
 	};
-	const changeVolume = (e) => {
-		let value = e.target.value;
-		audioRef.current.volume = value;
-		setSongInfo({ ...songInfo, volume: value });
+
+	const removeToast = (id) => {
+		setToasts((prevToasts) => prevToasts.filter((toast) => toast.id !== id));
 	};
 
 	return (
-		<div className="player">
-			<div className="time-control">
-				<p>{getTime(songInfo.currentTime)}</p>
-				<div
-					style={{
-						background: `linear-gradient(to right, ${currentSong.color[0]},${currentSong.color[1]})`,
-					}}
-					className="track"
-				>
-					<input
-						className="track-input"
-						value={songInfo.currentTime}
-						type="range"
-						max={songInfo.duration || 0}
-						min={0}
-						onChange={dragHandler}
-					/>
-					<div style={trackAnim} className="animate-track"></div>
-				</div>
-				<p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
-			</div>
-			<div className="play-control">
-				<FontAwesomeIcon
-					onClick={() => skipTrackHandler("skip-back")}
-					className="skip-back"
-					size="2x"
-					icon={faAngleLeft}
-				/>
-				<FontAwesomeIcon
-					onClick={playSongHandler}
-					className="play"
-					size="2x"
-					icon={isPlaying ? faPause : faPlay}
-				/>
-				<FontAwesomeIcon
-					className="skip-forward"
-					size="2x"
-					icon={faAngleRight}
-					onClick={() => skipTrackHandler("skip-forward")}
-				/>
-				<FontAwesomeIcon
-					onClick={() => setActiveVolume(!activeVolume)}
-					icon={faVolumeDown}
-				/>
-				{activeVolume && (
-					<div className="volume-input">
-						<input
-							onChange={changeVolume}
-							value={songInfo.volume}
-							max="1"
-							min="0"
-							step="0.01"
-							type="range"
-						/>
-					</div>
-				)}
-			</div>
+		<div
+			className={`application ${isLibraryOpen ? "library-active" : ""} ${
+				isQueueOpen ? "queue-active" : ""
+			}`}
+		>
+			<Nav
+				isLibraryOpen={isLibraryOpen}
+				setisLibraryOpen={setisLibraryOpen}
+				isQueueOpen={isQueueOpen}
+				setisQueueOpen={setisQueueOpen}
+			/>
+			<Song isPlaying={isPlaying} currentSong={currentSong} />
+			<Controls
+				audioRef={audioRef}
+				setIsPlaying={setIsPlaying}
+				currentSong={currentSong}
+				isPlaying={isPlaying}
+				songInfo={songInfo}
+				setSongInfo={setSongInfo}
+				songs={songs}
+				setSongs={setSongs}
+				setCurrentSong={setCurrentSong}
+				queuedSongs={queuedSongs}
+				playNextQueuedSong={playNextQueuedSong}
+			/>
+			<Library
+				songs={songs}
+				setCurrentSong={setCurrentSong}
+				audioRef={audioRef}
+				setIsPlaying={setIsPlaying}
+				isPlaying={isPlaying}
+				setSongs={setSongs}
+				isLibraryOpen={isLibraryOpen}
+				queuedSongs={queuedSongs}
+				setQueuedSongs={setQueuedSongs}
+				onSongAddedToQueue={showToast}
+			/>
+			<Queue
+				queuedSongs={queuedSongs}
+				isPlaying={isPlaying}
+				isQueueOpen={isQueueOpen}
+				setQueuedSongs={setQueuedSongs}
+				audioRef={audioRef}
+			/>
+			<ToastContainer toasts={toasts} removeToast={removeToast} />
+			<audio
+				onLoadedMetadata={timeUpdateHandler}
+				onTimeUpdate={timeUpdateHandler}
+				ref={audioRef}
+				src={currentSong.audio.default || currentSong.audio}
+				onEnded={songEndHandler}
+			></audio>
 		</div>
 	);
-};
+}
 
 export default Player;

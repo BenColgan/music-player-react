@@ -3,7 +3,7 @@ import "./styles/app.scss";
 
 //Import Components
 import Login from "./components/Login";
-import Application from "./components/Application";
+import Player from "./components/Player";
 
 //Import Context
 import { LoginContext } from "./contexts/LoginContext";
@@ -16,7 +16,7 @@ function App() {
 		<LoginContext.Provider
 			value={{ isLoggedIn, setIsLoggedIn, userName, setUserName }}
 		>
-			{isLoggedIn ? <Application /> : <Login />}
+			{isLoggedIn ? <Player /> : <Login />}
 		</LoginContext.Provider>
 	);
 }

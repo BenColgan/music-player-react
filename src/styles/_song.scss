@@ -61,15 +61,26 @@
 	}
 }
 
+.circle-for-jazz {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	translate: -50% -50%;
+	background-color: #000000;
+	border-radius: 50%;
+	width: 34px;
+	aspect-ratio: 1 / 1;
+}
+
 .needle {
-	width: 20px;
+	width: 18px;
 	height: 250px;
 	border-radius: 0 0 8px 8px;
 	background: linear-gradient(to bottom, #000000, #444444);
 	transform-origin: top;
 
 	&__container {
-		width: 20px;
+		width: 18px;
 		height: 250px;
 		position: absolute;
 		top: 30%;

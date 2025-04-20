@@ -6,15 +6,15 @@ import { LoginContext } from "../contexts/LoginContext";
 const Nav = ({
 	setisLibraryOpen,
 	isLibraryOpen,
-	setQueueStatus,
-	queueStatus,
+	setisQueueOpen,
+	isQueueOpen,
 }) => {
 	const { userName } = useContext(LoginContext);
 	const openLibraryHandler = () => {
 		setisLibraryOpen(!isLibraryOpen);
 	};
 	const openQueueHandler = () => {
-		setQueueStatus(!queueStatus);
+		setisQueueOpen(!isQueueOpen);
 	};
 
 	return (
@@ -28,7 +28,7 @@ const Nav = ({
 			</button>
 			<h1>Hey {userName}, enjoy my little react music app </h1>
 			<button
-				className={queueStatus ? "queue--open" : ""}
+				className={isQueueOpen ? "queue--open" : ""}
 				onClick={openQueueHandler}
 			>
 				Queue

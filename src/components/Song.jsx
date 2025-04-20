@@ -16,6 +16,7 @@ const Song = ({ currentSong, isPlaying }) => {
 				<div
 					className={`needle__container ${isPlaying ? "needle--active" : ""}`}
 				>
+					<div className="circle-for-jazz"></div>
 					<div className={`needle ${isPlaying ? "needle--wobble" : ""}`}></div>
 				</div>
 			</div>
