@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This was originally a 5 year old repo for a basic music player I found
+that of course being that old was completely broken. I fixed it up and
+got it running then update to a more modern version of react which broke
+it again. After getting it all back up I set out to completely overhaul
+the app with everything I need to get a decent understanding of react
 
 ## Available Scripts
 

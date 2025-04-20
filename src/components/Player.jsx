@@ -58,6 +58,7 @@ function Player() {
 		setTimeout(() => {
 			audioRef.current.play();
 		}, 500);
+		setIsPlaying(true);
 	};
 
 	const songEndHandler = async () => {
@@ -122,6 +123,7 @@ function Player() {
 				isQueueOpen={isQueueOpen}
 				setQueuedSongs={setQueuedSongs}
 				audioRef={audioRef}
+				playNextQueuedSong={playNextQueuedSong}
 			/>
 			<ToastContainer toasts={toasts} removeToast={removeToast} />
 			<audio

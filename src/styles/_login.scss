@@ -6,7 +6,7 @@
 	align-items: center;
 	justify-content: center;
 	padding: 2rem;
-	background: linear-gradient(to right, #2c2c2c, #1a1a1a);
+	background: #1a1a1a;
 	color: white;
 
 	h2,
@@ -16,26 +16,8 @@
 		color: #fff;
 	}
 
-	h3 {
-		font-size: 1.4rem;
-	}
-
-	p {
-		max-width: 800px;
-		font-size: 1rem;
-		margin-bottom: 2rem;
-		color: #a7a7a7;
-	}
-
-	ul {
-		margin-bottom: 2rem;
-	}
-
-	li {
-		list-style: none;
-	}
-
 	form {
+		margin-top: 0.5rem;
 		width: 100%;
 		max-width: 400px;
 		display: flex;

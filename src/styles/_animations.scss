@@ -59,3 +59,12 @@
 		transform: rotate(-12deg);
 	}
 }
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

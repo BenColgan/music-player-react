@@ -16,7 +16,14 @@ function App() {
 		<LoginContext.Provider
 			value={{ isLoggedIn, setIsLoggedIn, userName, setUserName }}
 		>
-			{isLoggedIn ? <Player /> : <Login />}
+			<div>{!isLoggedIn && <Login />}</div>
+			<div
+				style={{
+					animation: isLoggedIn ? "fadeIn 1.2s" : "none",
+				}}
+			>
+				{isLoggedIn && <Player />}
+			</div>
 		</LoginContext.Provider>
 	);
 }

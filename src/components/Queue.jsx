@@ -9,12 +9,10 @@ const Queue = ({
 	isQueueOpen,
 	setQueuedSongs,
 	audioRef,
+	playNextQueuedSong,
 }) => {
 	const playQueue = () => {
-		setTimeout(() => {
-			audioRef.current.currentTime = audioRef.current.duration;
-			audioRef.current.play();
-		}, 500);
+		playNextQueuedSong();
 	};
 
 	return (
